@@ -1,5 +1,5 @@
 """
-URL configuration for my_project project.
+URL configuration for codestar project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -16,9 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from blog.views import my_blog
+from blog import views as blog_views
 
 urlpatterns = [
-    path("admin/", admin.site.urls),
-    path("blog/", my_blog, name="blog"),
+    path('admin/', admin.site.urls),
+    path('blog/', blog_views.my_blog, name="blog"), # the app urls are loaded as the main urls
 ]
