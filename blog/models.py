@@ -24,7 +24,9 @@ class Post(models.Model):
     status = models.IntegerField(choices=STATUS, default=0)
     excerpt = models.TextField(blank=True)
     updated_on = models.DateTimeField(auto_now=True)
+    rating = models.FloatField(default=0.0)
     
 
     def __str__(self):
         return self.title
+git merge branch-name -m "Your commit message explaining why this merge is necessary"
