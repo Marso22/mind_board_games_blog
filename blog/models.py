@@ -27,7 +27,7 @@ class Post(models.Model):
     rating = models.FloatField(default=0.0)
     
     class Meta:
-        ordering = ["-created_on"]
+        ordering = ["-created_at"]
     
     def __str__(self):
         return f"{self.title} | written by {self.author}"
