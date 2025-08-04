@@ -159,3 +159,23 @@ body {
 .approval {
     color: rgb(222, 146, 168);
 }
+/* Add this to your style.css */
+.col-md-5th {
+    flex: 0 0 20%;
+    max-width: 20%;
+}
+
+/* Responsive behavior */
+@media (max-width: 767.98px) {
+    .col-md-5th {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .col-md-5th {
+        flex: 0 0 50%;
+        max-width: 50%;
+    }
+}
