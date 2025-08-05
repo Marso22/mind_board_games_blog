@@ -2,10 +2,12 @@
 {% load static %}
 
 {% block hero %}
-<!-- Hero Section - Outside main container -->
-<div class="hero-section mb-5">
-    <div class="hero-image-container position-relative">
-        <img src="{% static 'images/hero-board-games.jpg' %}" alt="Mind Board Games" class="img-fluid w-100 hero-image">
+<!-- Hero Section - Full Width -->
+<div class="hero-section">
+    <div class="hero-image-container">
+        <img src="{% static 'images/hero-board-games.jpg' %}" 
+             alt="Mind Board Games" 
+             class="hero-image">
         <div class="hero-overlay position-absolute top-50 start-50 translate-middle text-center text-white">
             <h1 class="display-4 fw-bold">Explore the World of Mind Games</h1>
             <p class="lead">Strategic Fun for Everyone</p>
@@ -22,14 +24,14 @@
         <div class="col-12 text-center">
             <h2 class="mb-4">Choose Your Category</h2>
             <div class="category-buttons">
-                <a href="{% url 'home' %}"
-                    class="btn btn-outline-primary mx-2 mb-2 {% if not selected_category %}active{% endif %}">
-                    All Posts
+                <a href="{% url 'home' %}" 
+                   class="btn btn-outline-primary mx-2 mb-2 {% if not selected_category %}active{% endif %}">
+                   All Posts
                 </a>
                 {% for category_key, category_name in categories %}
-                <a href="?category={{ category_key }}"
-                    class="btn btn-outline-primary mx-2 mb-2 {% if selected_category == category_key %}active{% endif %}">
-                    {{ category_name }}
+                <a href="?category={{ category_key }}" 
+                   class="btn btn-outline-primary mx-2 mb-2 {% if selected_category == category_key %}active{% endif %}">
+                   {{ category_name }}
                 </a>
                 {% endfor %}
             </div>
@@ -73,6 +75,19 @@
             </div>
         </div>
     </div>
+    
+    {% if is_paginated %}
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+            <li><a href="?page={{ page_obj.previous_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}" class="page-link">&laquo; PREV</a></li>
+            {% endif %}
+            {% if page_obj.has_next %}
+            <li><a href="?page={{ page_obj.next_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}" class="page-link">NEXT &raquo;</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    {% endif %}
 </div>
 
 {% endblock %}
