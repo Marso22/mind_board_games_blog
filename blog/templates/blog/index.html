@@ -1,12 +1,51 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
-<!-- index.html content starts here -->
+<!-- Hero Section -->
+<div class="hero-section mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="hero-image-container position-relative">
+                    <img src="{% static 'images/hero-board-games.jpg' %}" 
+                         alt="Mind Board Games" 
+                         class="img-fluid w-100 hero-image">
+                    <div class="hero-overlay position-absolute top-50 start-50 translate-middle text-center text-white">
+                        <h1 class="display-4 fw-bold">Mind Board Games</h1>
+                        <p class="lead">Adventures of a mind board gamer</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Category Selection -->
+<div class="container px-4 mb-4">
+    <div class="row">
+        <div class="col-12 text-center">
+            <h2 class="mb-4">Choose Your Category</h2>
+            <div class="category-buttons">
+                <a href="{% url 'home' %}" 
+                   class="btn btn-outline-primary mx-2 mb-2 {% if not selected_category %}active{% endif %}">
+                   All Posts
+                </a>
+                {% for category_key, category_name in categories %}
+                <a href="?category={{ category_key }}" 
+                   class="btn btn-outline-primary mx-2 mb-2 {% if selected_category == category_key %}active{% endif %}">
+                   {{ category_name }}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Blog Posts Section -->
 <div class="container px-4">
     <div class="row">
-
-        <!-- Blog Entries Column -->
         <div class="col-12 mt-3 left">
             <div class="row">
                 {% for post in post_list %}
@@ -16,16 +55,15 @@
                             <div class="image-container">
                                 <div class="image-flash">
                                     <p class="author">Author: {{ post.author }}</p>
+                                    <span class="badge bg-secondary">{{ post.get_category_display }}</span>
                                 </div>
                             </div>
                             <a href="#" class="post-link">
                                 <h2 class="card-title">{{ post.title }}</h2>
                                 <p class="card-text">{{ post.excerpt }}</p>
                             </a>
-
                             <hr />
-                            <p class="card-text text-muted h6">{{ post.created_at}}
-                            </p>
+                            <p class="card-text text-muted h6">{{ post.created_at }}</p>
                         </div>
                     </div>
                 </div>
@@ -33,28 +71,29 @@
             </div>
             <div class="row">
                 {% endif %}
+                {% empty %}
+                <div class="col-12 text-center">
+                    <p class="lead">No posts found in this category.</p>
+                </div>
                 {% endfor %}
-
             </div>
         </div>
     </div>
+    
     {% if is_paginated %}
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
             {% if page_obj.has_previous %}
-            <li>
-                <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV</a>
-            </li>
+            <li><a href="?page={{ page_obj.previous_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}" class="page-link">&laquo; PREV</a></li>
             {% endif %}
             {% if page_obj.has_next %}
-            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+            <li><a href="?page={{ page_obj.next_page_number }}{% if selected_category %}&category={{ selected_category }}{% endif %}" class="page-link">NEXT &raquo;</a></li>
             {% endif %}
         </ul>
     </nav>
     {% endif %}
 </div>
 
-<!-- index.html content ends here -->
 {% endblock %}
 
 {% block copyright %}
