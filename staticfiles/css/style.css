@@ -183,9 +183,8 @@ body {
 
 /* Hero Section Styles */
 .hero-section {
-    margin-left: calc(-50vw + 50%);
-    width: 100vw;
-    margin-bottom: 3rem !important;
+    width: 100%;
+    margin-bottom: 3rem;
 }
 
 .hero-image-container {
