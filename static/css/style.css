@@ -269,7 +269,7 @@ body {
 
 /* Push content down after navbar + hero */
 main {
-    margin-top: 510px !important; /* Should be 56px navbar + 500px hero = 556px ✓ */
+    margin-top: 526px !important; /* Should be 56px navbar + 500px hero = 556px ✓ */
 }
 
 /* Mobile responsiveness */
@@ -279,7 +279,7 @@ main {
     }
     
     main {
-        margin-top: 356px !important; /* 56px navbar + 300px hero = 356px ✓ */
+        margin-top: 326px !important; /* 56px navbar + 300px hero = 356px ✓ */
     }
 }
 
@@ -289,7 +289,7 @@ main {
     }
     
     main {
-        margin-top: 506px !important; /* 56px navbar + 450px hero = 506px ✓ */
+        margin-top: 476px !important; /* 56px navbar + 450px hero = 506px ✓ */
     }
 }
 
