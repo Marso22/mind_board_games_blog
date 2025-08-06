@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container px-4 mt-5">
+    <div class="row">
+        <div class="col-12 col-md-8 mx-auto">
+            {% if about %}
+            <!-- About Header -->
+            <div class="about-header mb-4">
+                <h1 class="post-title">{{ about.title }}</h1>
+                <div class="post-meta text-muted mb-3">
+                    <span class="date">Last updated: {{ about.updated_at|date:"F d, Y" }}</span>
+                </div>
+            </div>
+
+            <!-- About Content -->
+            <div class="post-content">
+                {{ about.content|linebreaks }}
+            </div>
+            {% else %}
+            <!-- No About Content -->
+            <div class="text-center">
+                <h1 class="post-title">About Mind Board Games</h1>
+                <p>About content will be available soon!</p>
+            </div>
+            {% endif %}
+
+            <!-- Back to Home Button -->
+            <div class="mt-5 mb-4">
+                <a href="{% url 'home' %}" class="btn btn-outline-primary">
+                    ← Back to Home
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
