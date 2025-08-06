@@ -112,13 +112,13 @@ body {
 }
 
 .post-title {
-    margin-top: 10%;
-    margin-left: 5%;
     font-size: 2.5rem;
     font-weight: 700;
     color: #2c3e50;
     margin-bottom: 1rem;
     line-height: 1.2;
+    margin-top: 0;  /* Align with content */
+    margin-left: 0; /* Align with content */
 }
 
 .post-meta {
@@ -269,7 +269,7 @@ body {
 
 /* Push content down after navbar + hero */
 main {
-    margin-top: 510px !important; /* Should be 56px navbar + 500px hero = 556px ✓ */
+    margin-top: 526px !important; /* Should be 56px navbar + 500px hero = 556px ✓ */
 }
 
 /* Mobile responsiveness */
@@ -279,7 +279,7 @@ main {
     }
     
     main {
-        margin-top: 356px !important; /* 56px navbar + 300px hero = 356px ✓ */
+        margin-top: 326px !important; /* 56px navbar + 300px hero = 356px ✓ */
     }
 }
 
@@ -289,7 +289,7 @@ main {
     }
     
     main {
-        margin-top: 506px !important; /* 56px navbar + 450px hero = 506px ✓ */
+        margin-top: 476px !important; /* 56px navbar + 450px hero = 506px ✓ */
     }
 }
 
