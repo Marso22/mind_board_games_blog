@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block body_class %}other-pages{% endblock %}
+
 {% block content %}
-<div class="container px-4 mt-5">
+<div class="container px-4">  <!-- Removed mt-5 -->
     <div class="row">
         <div class="col-12 col-md-8 mx-auto">
             {% if about %}
@@ -16,21 +18,38 @@
 
             <!-- About Content -->
             <div class="post-content">
-                {{ about.content|linebreaks }}
+                {{ about.content|safe }}
             </div>
+
+            <!-- Back to Home Button - Moved up -->
+            <div class="mt-4 mb-5">
+                <a href="{% url 'home' %}" class="btn btn-outline-primary">
+                    ← Back to Home
+                </a>
+            </div>
+
             {% else %}
             <!-- No About Content -->
             <div class="text-center">
                 <h1 class="post-title">About Mind Board Games</h1>
                 <p>About content will be available soon!</p>
+                <div class="mt-4">
+                    <a href="{% url 'home' %}" class="btn btn-outline-primary">
+                        ← Back to Home
+                    </a>
+                </div>
             </div>
             {% endif %}
 
-            <!-- Back to Home Button -->
-            <div class="mt-5 mb-4">
-                <a href="{% url 'home' %}" class="btn btn-outline-primary">
-                    ← Back to Home
-                </a>
+            <!-- Future Section - Ready for 'Let's collaborate' -->
+            <div class="mt-5 pt-5">
+                <!-- 
+                Future 'Let's collaborate' section will go here:
+                - Contact information
+                - Collaboration opportunities  
+                - Social media links
+                - Contact form
+                -->
             </div>
         </div>
     </div>

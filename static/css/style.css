@@ -248,7 +248,7 @@ body {
 }
 
 .hero-image-container {
-    height: 500px !important;  /* You changed this to 500px */
+    height: 520px !important;  /* You changed this to 500px */
     width: 100vw !important;
     overflow: hidden !important;
     position: relative;
@@ -267,30 +267,40 @@ body {
     display: block !important;  /* Ensure it's a block element */
 }
 
-/* Push content down after navbar + hero */
+/* Remove the global main margin */
 main {
-    margin-top: 526px !important; /* Should be 56px navbar + 500px hero = 556px ✓ */
+    margin-top: 0 !important; /* Reset to 0 */
 }
 
-/* Mobile responsiveness */
+/* Apply hero spacing only to homepage */
+.home-page main {
+    margin-top: 526px !important; /* Desktop spacing for homepage only */
+}
+
+/* Mobile responsiveness for homepage only */
 @media (max-width: 768px) {
     .hero-image-container {
-        height: 300px !important;
+        height: 350px !important; /* Mobile hero height */
     }
     
-    main {
-        margin-top: 326px !important; /* 56px navbar + 300px hero = 356px ✓ */
+    .home-page main {
+        margin-top: 356px !important; /* 56px navbar + 300px hero = 356px */
     }
 }
 
 @media (min-width: 769px) and (max-width: 1024px) {
     .hero-image-container {
-        height: 450px !important;
+        height: 500px !important; /* Tablet hero height */
     }
     
-    main {
-        margin-top: 476px !important; /* 56px navbar + 450px hero = 506px ✓ */
+    .home-page main {
+        margin-top: 506px !important; /* 56px navbar + 450px hero = 506px */
     }
+}
+
+/* For other pages like About, use normal spacing */
+.other-pages main {
+    margin-top: 80px !important; /* Normal spacing for About, etc. */
 }
 
 .category-buttons .btn {
