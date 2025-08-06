@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import generic
 from .models import Post
 
@@ -21,3 +21,11 @@ class PostList(generic.ListView):
         context['categories'] = Post.CATEGORY_CHOICES
         context['selected_category'] = self.request.GET.get('category')
         return context
+
+class PostDetail(generic.DetailView):
+    model = Post
+    template_name = 'blog/post_detail.html'
+    context_object_name = 'post'
+    
+    def get_queryset(self):
+        return Post.objects.filter(status=1)  # Only show published posts
