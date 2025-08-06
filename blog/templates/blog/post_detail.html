@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container px-4 mt-5">
+    <div class="row">
+        <div class="col-12 col-md-8 mx-auto">
+            <!-- Post Header -->
+            <div class="post-header mb-4">
+                <h1 class="post-title">{{ post.title }}</h1>
+                <div class="post-meta text-muted mb-3">
+                    <span class="author">By {{ post.author }}</span> | 
+                    <span class="date">{{ post.created_at|date:"F d, Y" }}</span> | 
+                    <span class="badge bg-secondary">{{ post.get_category_display }}</span>
+                </div>
+            </div>
+
+            <!-- Post Content -->
+            <div class="post-content">
+                {{ post.content|safe }}
+            </div>
+
+            <!-- Back to Home Button -->
+            <div class="mt-5 mb-4">
+                <a href="{% url 'home' %}" class="btn btn-outline-primary">
+                    ← Back to All Posts
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
