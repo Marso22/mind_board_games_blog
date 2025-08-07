@@ -538,3 +538,36 @@ main {
     margin: 0 auto;
 }
 
+/* STRONGER hover effect prevention for production */
+.post-link:hover .card-text,
+.post-link:hover .card-text *,
+.post-link:hover .text-muted,
+.post-link:hover .text-muted *,
+.post-link:hover .author,
+.post-link:hover .faded {
+    color: inherit !important;
+    background-color: transparent !important;
+    text-decoration: none !important;
+}
+
+/* Reset ALL elements inside post-link on hover */
+.post-link:hover * {
+    color: inherit !important;
+    background-color: transparent !important;
+    text-decoration: none !important;
+}
+
+/* Then specifically override ONLY the title */
+.post-link:hover .card-title {
+    color: #E84610 !important;
+    text-decoration: underline !important;
+    transition: color 0.3s ease !important;
+}
+
+/* Ensure card lift effect still works */
+.post-link:hover .card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12) !important;
+    transform: translateY(-2px) !important;
+    transition: all 0.3s ease !important;
+    background-color: transparent !important;
+}
