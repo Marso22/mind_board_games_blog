@@ -12,9 +12,8 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-import sys
 import dj_database_url
-if os.path.isfile('env.py'):
+if os.path.isfile("env.py"):
     import env
     DEBUG = True
 else:
@@ -42,19 +41,21 @@ ALLOWED_HOSTS = ['.herokuapp.com',
 # Application definition
 
 INSTALLED_APPS = [
-    "django.contrib.admin",
-    "django.contrib.auth",
-    "django.contrib.contenttypes",
-    "django.contrib.sessions",
-    "django.contrib.messages",
-    "django.contrib.staticfiles",
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
     'django.contrib.sites',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    "django_summernote",
-    "blog",
-    "about"
+    # 'cloudinary_storage',  # ← Comment out temporarily
+    'django.contrib.staticfiles',
+    # 'cloudinary',  # ← Comment out temporarily
+    'django_summernote',
+    'blog',
+    'about',
 ]
 
 SITE_ID = 1
@@ -168,3 +169,20 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Cloudinary Settings
+# CLOUDINARY_STORAGE = {
+#     'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL')
+# }
+
+# MEDIA_URL = '/media/'
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+# Email settings for development
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Disable email verification for development
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_REQUIRED = False
+ACCOUNT_AUTHENTICATION_METHOD = 'username_email'
+ACCOUNT_UNIQUE_EMAIL = True

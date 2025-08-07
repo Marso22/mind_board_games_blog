@@ -571,3 +571,137 @@ main {
     transition: all 0.3s ease !important;
     background-color: transparent !important;
 }
+
+/* Fixed/Sticky Navbar Styling */
+.navbar {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1030 !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Ensure navbar content is properly spaced */
+.navbar-nav {
+    align-items: center;
+}
+
+/* Add padding to body to prevent content overlap */
+body {
+    padding-top: 0;
+}
+
+/* Mobile navbar fixes */
+@media (max-width: 991.98px) {
+    /* Fix navbar collapse positioning */
+    .navbar-collapse {
+        background-color: rgba(255, 255, 255, 0.98) !important;
+        margin-top: 0.5rem !important;
+        border-radius: 0.375rem !important;
+        border: 1px solid rgba(0, 0, 0, 0.1) !important;
+        padding: 1rem !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    }
+    
+    /* Left-align menu items instead of center */
+    .navbar-nav {
+        text-align: left !important;
+        align-items: flex-start !important;
+    }
+    
+    .navbar-nav .nav-link {
+        text-align: left !important;
+        padding: 0.5rem 0 !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        margin-bottom: 0.25rem !important;
+    }
+    
+    .navbar-nav .nav-link:last-child {
+        border-bottom: none;
+    }
+    
+    /* Fix user greeting alignment in mobile menu */
+    .navbar-nav .nav-item {
+        width: 100% !important;
+    }
+    
+    /* User greeting in mobile menu */
+    .user-greeting {
+        text-align: left !important;
+        padding: 0.5rem 0 !important;
+    }
+    
+    /* Logout button in mobile menu */
+    .btn-sm {
+        margin-top: 0.5rem !important;
+        width: auto !important;
+        text-align: center !important;
+    }
+    
+    /* FIX: Hero image should not be absolute on mobile */
+    .home-page .hero-section {
+        position: relative !important; /* Changed from absolute */
+        top: auto !important; /* Reset top positioning */
+        left: auto !important;
+        right: auto !important;
+        z-index: 1 !important;
+        margin-top: 0 !important; /* Removed the 56px gap */
+    }
+    
+    /* Adjust main content margin for mobile */
+    .home-page main {
+        margin-top: 0 !important; /* Reset since hero is now relative */
+    }
+    
+    .navbar {
+        z-index: 1050 !important; /* Higher than hero */
+    }
+    
+    /* Ensure burger menu content doesn't affect hero */
+    .navbar-collapse.show {
+        position: relative !important;
+        z-index: 1051 !important;
+    }
+}
+
+/* Fix for very small screens */
+@media (max-width: 576px) {
+    .navbar-collapse {
+        margin-left: -1rem !important;
+        margin-right: -1rem !important;
+        padding: 1rem 1.5rem !important;
+    }
+    
+    .navbar-nav .nav-link {
+        font-size: 1.1rem !important;
+        padding: 0.75rem 0 !important;
+    }
+    
+    /* Remove hero margin on small screens too */
+    .home-page .hero-section {
+        margin-top: 0 !important; /* No gap */
+    }
+    
+    .hero-image-container {
+        height: 350px !important;
+    }
+}
+
+/* Tablet specific fixes */
+@media (min-width: 769px) and (max-width: 991.98px) {
+    .home-page .hero-section {
+        position: relative !important; /* Also relative on tablet */
+        top: auto !important;
+        margin-top: 0 !important; /* No gap on tablet either */
+    }
+    
+    .home-page main {
+        margin-top: 0 !important;
+    }
+    
+    .hero-image-container {
+        height: 500px !important;
+    }
+}

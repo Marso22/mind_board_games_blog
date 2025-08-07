@@ -1,30 +1,183 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block body_class %}other-pages{% endblock %}
+
 {% block content %}
-<div class="container px-4 mt-5">
-    <div class="row">
-        <div class="col-12 col-md-8 mx-auto">
-            <!-- Post Header -->
-            <div class="post-header mb-4">
-                <h1 class="post-title">{{ post.title }}</h1>
-                <div class="post-meta text-muted mb-3">
-                    <span class="author">By {{ post.author }}</span> | 
-                    <span class="date">{{ post.created_at|date:"F d, Y" }}</span> | 
-                    <span class="badge bg-secondary">{{ post.get_category_display }}</span>
+<div class="container px-4">
+    <!-- Post Content -->
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-8">
+            <article class="card mt-3 mb-4 shadow-sm border-0">
+                <!-- Post Header -->
+                <div class="card-header bg-white border-0 p-4">
+                    <h1 class="post-title mb-3">{{ post.title }}</h1>
+                    <div class="text-muted">
+                        <small>
+                            <i class="fas fa-user me-2"></i>{{ post.author }}
+                            <i class="fas fa-calendar ms-3 me-2"></i>{{ post.created_at|date:"M d, Y" }}
+                            <i class="fas fa-tag ms-3 me-2"></i>{{ post.get_category_display }}
+                        </small>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Post Content -->
-            <div class="post-content">
-                {{ post.content|safe }}
-            </div>
+                <!-- Post Image -->
+                {% if post.featured_image %}
+                <div class="image-container">
+                    <img src="{{ post.featured_image.url }}" class="card-img-top" alt="{{ post.title }}">
+                </div>
+                {% endif %}
 
-            <!-- Back to Home Button -->
-            <div class="mt-5 mb-4">
-                <a href="{% url 'home' %}" class="btn btn-outline-primary">
-                    ← Back to All Posts
-                </a>
+                <!-- Post Content -->
+                <div class="card-body p-4">
+                    {{ post.content|safe }}
+                </div>
+            </article>
+        </div>
+    </div>
+
+    <!-- Comments Section -->
+    <div class="row justify-content-center">
+        <div class="col-12 col-lg-8">
+            <!-- Comments Header -->
+            <div class="card mt-4 mb-4 shadow-sm border-0">
+                <div class="card-header bg-white border-0 p-4">
+                    <h3 class="mb-0">
+                        <i class="fas fa-comments me-2 text-primary"></i>
+                        Comments ({{ comment_count }})
+                    </h3>
+                </div>
+
+                <!-- Add Comment Form (Only for logged-in users) -->
+                {% if user.is_authenticated %}
+                <div class="card-body border-bottom">
+                    <h5 class="mb-3">Leave a Comment</h5>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            {{ comment_form.body }}
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane me-2"></i>Post Comment
+                        </button>
+                    </form>
+                </div>
+                {% else %}
+                <div class="card-body border-bottom text-center">
+                    <p class="text-muted mb-3">
+                        <i class="fas fa-lock me-2"></i>
+                        You must be logged in to comment
+                    </p>
+                    <a href="{% url 'account_login' %}" class="btn btn-outline-primary me-2">Login</a>
+                    <a href="{% url 'account_signup' %}" class="btn btn-primary">Register</a>
+                </div>
+                {% endif %}
+
+                <!-- Display Comments -->
+                <div class="card-body p-0">
+                    {% if comments %}
+                        {% for comment in comments %}
+                        <div class="comment-item p-4 border-bottom">
+                            <!-- Comment Header -->
+                            <div class="d-flex justify-content-between align-items-start mb-3">
+                                <div>
+                                    <strong class="text-primary">
+                                        <i class="fas fa-user-circle me-2"></i>{{ comment.author }}
+                                    </strong>
+                                    <small class="text-muted ms-3">
+                                        <i class="fas fa-clock me-1"></i>{{ comment.created_on|date:"M d, Y - H:i" }}
+                                        {% if comment.updated_on != comment.created_on %}
+                                            <span class="badge bg-secondary ms-2">Edited</span>
+                                        {% endif %}
+                                    </small>
+                                </div>
+                                
+                                <!-- Edit/Delete buttons (only for comment author) -->
+                                {% if user.is_authenticated and comment.author == user %}
+                                <div class="dropdown">
+                                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle" 
+                                            type="button" data-bs-toggle="dropdown">
+                                        <i class="fas fa-cog"></i>
+                                    </button>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <button type="button" class="dropdown-item" 
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target="#editModal{{ comment.id }}">
+                                                <i class="fas fa-edit me-2"></i>Edit
+                                            </button>
+                                        </li>
+                                        <li>
+                                            <button type="button" class="dropdown-item text-danger" 
+                                                    data-bs-toggle="modal" 
+                                                    data-bs-target="#deleteModal{{ comment.id }}">
+                                                <i class="fas fa-trash me-2"></i>Delete
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
+                                {% endif %}
+                            </div>
+
+                            <!-- Comment Body -->
+                            <div class="comment-body">
+                                <p class="mb-0">{{ comment.body|linebreaks }}</p>
+                            </div>
+                        </div>
+
+                        <!-- Edit Modal -->
+                        {% if user.is_authenticated and comment.author == user %}
+                        <div class="modal fade" id="editModal{{ comment.id }}" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <form method="post" action="{% url 'comment_edit' post.slug comment.id %}">
+                                        {% csrf_token %}
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">Edit Comment</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <textarea name="body" class="form-control" rows="4" required>{{ comment.body }}</textarea>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                            <button type="submit" class="btn btn-primary">Update Comment</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Delete Modal -->
+                        <div class="modal fade" id="deleteModal{{ comment.id }}" tabindex="-1">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">Delete Comment</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Are you sure you want to delete this comment?</p>
+                                        <div class="alert alert-light">
+                                            <strong>{{ comment.body|truncatewords:10 }}</strong>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                        <a href="{% url 'comment_delete' post.slug comment.id %}" class="btn btn-danger">Delete</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    {% else %}
+                        <div class="p-4 text-center text-muted">
+                            <i class="fas fa-comments fa-3x mb-3 opacity-50"></i>
+                            <p class="mb-0">No comments yet. Be the first to share your thoughts!</p>
+                        </div>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>

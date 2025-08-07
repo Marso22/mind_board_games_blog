@@ -103,12 +103,47 @@ body {
 
 .post-link {
     text-decoration: none;
-    color: #445261;
+    color: inherit;
+    display: block;
 }
 
-.post-link:hover,
-.page-link {
-    color: #E84610;
+.post-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Hover effect - ONLY title should change */
+.post-link:hover .card-title {
+    color: #E84610 !important;
+    text-decoration: underline;
+    transition: all 0.3s ease;
+}
+
+/* PREVENT hover effects on excerpt - IMPORTANT! */
+.post-link:hover .card-text {
+    color: inherit !important;
+    background-color: inherit !important;
+    text-decoration: none !important;
+}
+
+/* Card hover - subtle shadow only */
+.post-link:hover .card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+/* Ensure excerpt never changes on hover */
+.card-text {
+    transition: none !important;
+}
+
+/* Prevent any text highlighting on author/date */
+.post-link:hover .text-muted,
+.post-link:hover .text-muted small {
+    color: inherit !important;
+    background-color: inherit !important;
+    text-decoration: none !important;
 }
 
 .post-title {
@@ -444,3 +479,229 @@ main {
     }
 }
 
+/* User greeting styling */
+.user-greeting {
+    font-size: 1.1rem !important;
+    font-weight: bold !important;
+    color: #445261 !important;
+    margin-bottom: 0 !important;
+    line-height: 1.5 !important;
+}
+
+/* Responsive user greeting */
+@media (max-width: 768px) {
+    .user-greeting {
+        font-size: 1rem !important;
+        margin-right: 0.5rem !important;
+    }
+    
+    .btn-sm {
+        font-size: 0.8rem !important;
+        padding: 0.25rem 0.5rem !important;
+    }
+}
+
+/* User section on mobile */
+@media (max-width: 576px) {
+    .d-flex.align-items-center {
+        flex-direction: column !important;
+        align-items: flex-end !important;
+    }
+    
+    .user-greeting {
+        margin-bottom: 0.25rem !important;
+        margin-right: 0 !important;
+    }
+}
+
+/* Custom logout page styling */
+.btn-warning {
+    background-color: #E84610 !important;
+    border-color: #E84610 !important;
+    color: white !important;
+}
+
+.btn-warning:hover {
+    background-color: #cc3e0e !important;
+    border-color: #cc3e0e !important;
+    color: white !important;
+}
+
+/* Logout page specific styling */
+.logout-icon {
+    color: #E84610 !important;
+}
+
+/* Center alignment for logout page */
+.logout-card {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+/* STRONGER hover effect prevention for production */
+.post-link:hover .card-text,
+.post-link:hover .card-text *,
+.post-link:hover .text-muted,
+.post-link:hover .text-muted *,
+.post-link:hover .author,
+.post-link:hover .faded {
+    color: inherit !important;
+    background-color: transparent !important;
+    text-decoration: none !important;
+}
+
+/* Reset ALL elements inside post-link on hover */
+.post-link:hover * {
+    color: inherit !important;
+    background-color: transparent !important;
+    text-decoration: none !important;
+}
+
+/* Then specifically override ONLY the title */
+.post-link:hover .card-title {
+    color: #E84610 !important;
+    text-decoration: underline !important;
+    transition: color 0.3s ease !important;
+}
+
+/* Ensure card lift effect still works */
+.post-link:hover .card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12) !important;
+    transform: translateY(-2px) !important;
+    transition: all 0.3s ease !important;
+    background-color: transparent !important;
+}
+
+/* Fixed/Sticky Navbar Styling */
+.navbar {
+    position: sticky !important;
+    top: 0 !important;
+    z-index: 1030 !important;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px) !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease !important;
+}
+
+/* Ensure navbar content is properly spaced */
+.navbar-nav {
+    align-items: center;
+}
+
+/* Add padding to body to prevent content overlap */
+body {
+    padding-top: 0;
+}
+
+/* Mobile navbar fixes */
+@media (max-width: 991.98px) {
+    /* Fix navbar collapse positioning */
+    .navbar-collapse {
+        background-color: rgba(255, 255, 255, 0.98) !important;
+        margin-top: 0.5rem !important;
+        border-radius: 0.375rem !important;
+        border: 1px solid rgba(0, 0, 0, 0.1) !important;
+        padding: 1rem !important;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    }
+    
+    /* Left-align menu items instead of center */
+    .navbar-nav {
+        text-align: left !important;
+        align-items: flex-start !important;
+    }
+    
+    .navbar-nav .nav-link {
+        text-align: left !important;
+        padding: 0.5rem 0 !important;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        margin-bottom: 0.25rem !important;
+    }
+    
+    .navbar-nav .nav-link:last-child {
+        border-bottom: none;
+    }
+    
+    /* Fix user greeting alignment in mobile menu */
+    .navbar-nav .nav-item {
+        width: 100% !important;
+    }
+    
+    /* User greeting in mobile menu */
+    .user-greeting {
+        text-align: left !important;
+        padding: 0.5rem 0 !important;
+    }
+    
+    /* Logout button in mobile menu */
+    .btn-sm {
+        margin-top: 0.5rem !important;
+        width: auto !important;
+        text-align: center !important;
+    }
+    
+    /* FIX: Hero image should not be absolute on mobile */
+    .home-page .hero-section {
+        position: relative !important; /* Changed from absolute */
+        top: auto !important; /* Reset top positioning */
+        left: auto !important;
+        right: auto !important;
+        z-index: 1 !important;
+        margin-top: 0 !important; /* Removed the 56px gap */
+    }
+    
+    /* Adjust main content margin for mobile */
+    .home-page main {
+        margin-top: 0 !important; /* Reset since hero is now relative */
+    }
+    
+    .navbar {
+        z-index: 1050 !important; /* Higher than hero */
+    }
+    
+    /* Ensure burger menu content doesn't affect hero */
+    .navbar-collapse.show {
+        position: relative !important;
+        z-index: 1051 !important;
+    }
+}
+
+/* Fix for very small screens */
+@media (max-width: 576px) {
+    .navbar-collapse {
+        margin-left: -1rem !important;
+        margin-right: -1rem !important;
+        padding: 1rem 1.5rem !important;
+    }
+    
+    .navbar-nav .nav-link {
+        font-size: 1.1rem !important;
+        padding: 0.75rem 0 !important;
+    }
+    
+    /* Remove hero margin on small screens too */
+    .home-page .hero-section {
+        margin-top: 0 !important; /* No gap */
+    }
+    
+    .hero-image-container {
+        height: 350px !important;
+    }
+}
+
+/* Tablet specific fixes */
+@media (min-width: 769px) and (max-width: 991.98px) {
+    .home-page .hero-section {
+        position: relative !important; /* Also relative on tablet */
+        top: auto !important;
+        margin-top: 0 !important; /* No gap on tablet either */
+    }
+    
+    .home-page main {
+        margin-top: 0 !important;
+    }
+    
+    .hero-image-container {
+        height: 500px !important;
+    }
+}
