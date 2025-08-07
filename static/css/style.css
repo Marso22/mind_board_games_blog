@@ -103,12 +103,46 @@ body {
 
 .post-link {
     text-decoration: none;
-    color: #445261;
+    color: inherit;
+    display: block;
 }
 
-.post-link:hover,
-.page-link {
-    color: #E84610;
+.post-link:hover {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Hover effect - Target the correct class (.card-title, not .post-title) */
+.post-link:hover .card-title {
+    color: #E84610 !important;
+    text-decoration: underline;
+    transition: all 0.3s ease;
+}
+
+/* Remove any hover effects from excerpt */
+.post-link:hover .card-text {
+    color: inherit;
+}
+
+/* Card hover - subtle shadow without background change */
+.post-link:hover .card {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+    transition: all 0.3s ease;
+}
+
+/* Ensure excerpt stays normal on hover */
+.card-text {
+    transition: none;
+}
+
+/* Author and date styling - no hover effect */
+.text-muted small {
+    transition: none;
+}
+
+.text-muted small:hover {
+    color: inherit !important;
 }
 
 .post-title {
@@ -442,5 +476,64 @@ main {
         font-size: 1.5rem !important;
         line-height: 1.1;
     }
+}
+
+/* User greeting styling */
+.user-greeting {
+    font-size: 1.1rem !important;
+    font-weight: bold !important;
+    color: #445261 !important;
+    margin-bottom: 0 !important;
+    line-height: 1.5 !important;
+}
+
+/* Responsive user greeting */
+@media (max-width: 768px) {
+    .user-greeting {
+        font-size: 1rem !important;
+        margin-right: 0.5rem !important;
+    }
+    
+    .btn-sm {
+        font-size: 0.8rem !important;
+        padding: 0.25rem 0.5rem !important;
+    }
+}
+
+/* User section on mobile */
+@media (max-width: 576px) {
+    .d-flex.align-items-center {
+        flex-direction: column !important;
+        align-items: flex-end !important;
+    }
+    
+    .user-greeting {
+        margin-bottom: 0.25rem !important;
+        margin-right: 0 !important;
+    }
+}
+
+/* Custom logout page styling */
+.btn-warning {
+    background-color: #E84610 !important;
+    border-color: #E84610 !important;
+    color: white !important;
+}
+
+.btn-warning:hover {
+    background-color: #cc3e0e !important;
+    border-color: #cc3e0e !important;
+    color: white !important;
+}
+
+/* Logout page specific styling */
+.logout-icon {
+    color: #E84610 !important;
+}
+
+/* Center alignment for logout page */
+.logout-card {
+    max-width: 400px;
+    margin: 0 auto;
 }
 
