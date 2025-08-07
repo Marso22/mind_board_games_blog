@@ -1,289 +1,81 @@
-body {
-    background-color: #F9FAFC;
-}
+/* ===========================================
+   BASE STYLES & VARIABLES
+   =========================================== */
+body { background-color: #F9FAFC; padding-top: 0; }
 
-.brand {
-    font-family: Lato, sans-serif;
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: #4A4A4F;
-}
+/* Brand & Utilities */
+.brand { font-family: Lato, sans-serif; font-size: 1.4rem; font-weight: 700; color: #4A4A4F; }
+.red-o { color: #E84610; }
+.thin { font-weight: 300; }
+.light-bg { background-color: #fff; }
+.dark-bg { background-color: #445261; }
+.main-bg { background-color: #F9FAFC; }
+.faded { color: rgb(172, 175, 175); }
+.approval { color: rgb(222, 146, 168); }
 
-.red-o {
-    color: #E84610;
-}
+/* ===========================================
+   CARD & POST STYLES
+   =========================================== */
+.card { border: none; background-color: transparent; }
+.card-title { font-size: 1.2rem !important; font-weight: 600; line-height: 1.3; margin-bottom: 0.5rem; }
+.card-text { font-size: 0.8rem; line-height: 1.4; }
+.image-flash { display: none !important; }
+.scale { width: 100%; height: auto; }
+.author { color: white; margin: 4px; text-transform: uppercase; }
 
-.thin {
-    font-weight: 300;
+/* Post Link Hover Effects - Consolidated */
+.post-link { text-decoration: none; color: inherit; display: block; }
+.post-link:hover { text-decoration: none; color: inherit; }
+.post-link:hover .card-title { color: #E84610 !important; text-decoration: underline; transition: color 0.3s ease; }
+.post-link:hover .card { 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12); 
+    transform: translateY(-2px); 
+    transition: all 0.3s ease; 
+    background-color: transparent; 
 }
-
-.light-bg {
-    background-color: #fff;
-}
-
-.dark-bg {
-    background-color: #445261;
-}
-
-.main-bg {
-    background-color: #F9FAFC;
-}
-
-.card {
-    border: none;
-    background-color: transparent;
-}
-
-/* Add this new CSS for smaller post titles */
-.card-title {
-    font-size: 1.2rem !important;  /* Smaller than default h2 size */
-    font-weight: 600;
-    line-height: 1.3;
-    margin-bottom: 0.5rem;
-}
-
-/* Optional: Also make excerpt text smaller */
-.card-text {
-    font-size: 0.8rem;
-    line-height: 1.4;
-}
-
-.image-container {
-    position: relative;
-}
-
-.image-flash {
-    display: none !important;  /* Hide the entire teal box with author */
-}
-
-.scale {
-    width: 100%;
-    height: auto;
-}
-
-.author {
-    color: white;
-    margin: 4px;
-    text-transform: uppercase;
-}
-
-.masthead {
-    margin-top: 10px;
-    overflow: hidden;
-    position: relative;
-    display: inline-block;
-    height: 33vh;
-    width: 100%;
-}
-
-.masthead-text {
-    background-color: #445261;
-    color: white;
-    position: relative;
-}
-
-.masthead-image {
-    position: relative;
-    overflow: hidden;
-}
-
-.masthead-image:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 90%;
-    height: 100%;
-    width: 150%;
-    background: #445261;
-    -webkit-transform: skew(15deg);
-    -moz-transform: skew(15deg);
-    transform: skew(15deg);
-    z-index: 100;
-}
-
-.post-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
-
-.post-link:hover {
-    text-decoration: none;
-    color: inherit;
-}
-
-/* Hover effect - ONLY title should change */
-.post-link:hover .card-title {
-    color: #E84610 !important;
-    text-decoration: underline;
-    transition: all 0.3s ease;
-}
-
-/* PREVENT hover effects on excerpt - IMPORTANT! */
-.post-link:hover .card-text {
-    color: inherit !important;
-    background-color: inherit !important;
-    text-decoration: none !important;
-}
-
-/* Card hover - subtle shadow only */
-.post-link:hover .card {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
-    transform: translateY(-2px);
-    transition: all 0.3s ease;
-}
-
-/* Ensure excerpt never changes on hover */
-.card-text {
-    transition: none !important;
-}
-
-/* Prevent any text highlighting on author/date */
+/* Prevent hover on all other elements */
+.post-link:hover .card-text,
 .post-link:hover .text-muted,
-.post-link:hover .text-muted small {
-    color: inherit !important;
-    background-color: inherit !important;
-    text-decoration: none !important;
+.post-link:hover .author,
+.post-link:hover .faded { 
+    color: inherit !important; 
+    background-color: transparent !important; 
+    text-decoration: none !important; 
 }
 
-.post-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #2c3e50;
-    margin-bottom: 1rem;
-    line-height: 1.2;
-    margin-top: 0;  /* Align with content */
-    margin-left: 0; /* Align with content */
-}
+/* ===========================================
+   POST CONTENT
+   =========================================== */
+.post-title { font-size: 2.5rem; font-weight: 700; color: #2c3e50; margin-bottom: 1rem; line-height: 1.2; margin-top: 0; margin-left: 0; }
+.post-content { font-size: 1.1rem; line-height: 1.8; color: #495057; margin-top: 2rem; }
+.post-content h2 { font-size: 1.8rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem; color: #2c3e50; }
+.post-content h3 { font-size: 1.5rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.8rem; color: #2c3e50; }
+.post-content p { margin-bottom: 1.5rem; }
+.post-content ul, .post-content ol { margin-bottom: 1.5rem; padding-left: 2rem; }
 
-.post-meta {
-    font-size: 0.9rem;
-    border-bottom: 1px solid #e9ecef;
-    padding-bottom: 1rem;
-}
+/* ===========================================
+   LAYOUT & GRID
+   =========================================== */
+.col-md-5th { flex: 0 0 20%; max-width: 20%; }
+.container.px-4.mb-4 { margin-bottom: 0.5rem !important; }
+.col-12.mt-3.left { margin-top: 0.5rem !important; }
 
-.post-meta .author {
-    font-weight: 600;
-    color: #495057;
-}
-
-.post-content {
-    font-size: 1.1rem;
-    line-height: 1.8;
-    color: #495057;
-    margin-top: 2rem;
-}
-
-.post-content h2 {
-    font-size: 1.8rem;
-    font-weight: 600;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    color: #2c3e50;
-}
-
-.post-content h3 {
-    font-size: 1.5rem;
-    font-weight: 600;
-    margin-top: 1.5rem;
-    margin-bottom: 0.8rem;
-    color: #2c3e50;
-}
-
-.post-content p {
-    margin-bottom: 1.5rem;
-}
-
-.post-content ul, .post-content ol {
-    margin-bottom: 1.5rem;
-    padding-left: 2rem;
-}
-
-
-.btn-signup,
-.btn-edit {
-    background-color: #188181;
-    color: #fff;
-}
-
-.btn-signup:hover,
-.btn-signup:active {
-    background-color: #fff;
-    color: #23BBBB;
-}
-
-.link {
-    color: #23BBBB;
-    text-decoration: none;
-}
-
-.link:hover,
-.link:active {
-    color: #445261;
-    text-decoration: underline;
-}
-
-.btn-like {
-    color: #E84610;
-    border: none;
-    background: transparent;
-}
-
-.btn-delete {
-    color: #fff;
-    background: #E84610;
-}
-
-.btn-like:hover,
-.btn-like:active {
-    color: #E84610;
-    background: transparent;
-    border: none;
-}
-
-.faded {
-    color: rgb(172, 175, 175);
-}
-
-.approval {
-    color: rgb(222, 146, 168);
-}
-
-/* Add this to your style.css */
-.col-md-5th {
-    flex: 0 0 20%;
-    max-width: 20%;
-}
-
-/* Responsive behavior */
-@media (max-width: 767.98px) {
-    .col-md-5th {
-        flex: 0 0 100%;
-        max-width: 100%;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 991.98px) {
-    .col-md-5th {
-        flex: 0 0 50%;
-        max-width: 50%;
-    }
-}
-
-/* Hero Section - Force full viewport width */
+/* ===========================================
+   HERO SECTION
+   =========================================== */
 .hero-section {
     position: absolute !important;
     top: 56px !important;
     left: 0 !important;
     right: 0 !important;
-    width: 100vw !important;  /* Changed from 100% to 100vw */
+    width: 100vw !important;
     z-index: 1 !important;
     margin: 0 !important;
     padding: 0 !important;
 }
 
 .hero-image-container {
-    height: 520px !important;  /* You changed this to 500px */
+    height: 520px !important;
     width: 100vw !important;
     overflow: hidden !important;
     position: relative;
@@ -292,287 +84,19 @@ body {
 }
 
 .hero-image {
-    width: 100vw !important;  /* Changed from 100% to 100vw */
-    height: 100% !important;  /* Make sure this is 100% */
-    object-fit: cover !important;  /* This should fill the container */
-    object-position: center !important;  /* Center the image */
+    width: 100vw !important;
+    height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
     filter: brightness(0.7);
     margin: 0 !important;
     padding: 0 !important;
-    display: block !important;  /* Ensure it's a block element */
+    display: block !important;
 }
 
-/* Remove the global main margin */
-main {
-    margin-top: 0 !important; /* Reset to 0 */
-}
-
-/* Apply hero spacing only to homepage */
-.home-page main {
-    margin-top: 526px !important; /* Desktop spacing for homepage only */
-}
-
-/* Mobile responsiveness for homepage only */
-@media (max-width: 768px) {
-    .hero-image-container {
-        height: 350px !important; /* Mobile hero height */
-    }
-    
-    .home-page main {
-        margin-top: 356px !important; /* 56px navbar + 300px hero = 356px */
-    }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-    .hero-image-container {
-        height: 500px !important; /* Tablet hero height */
-    }
-    
-    .home-page main {
-        margin-top: 506px !important; /* 56px navbar + 450px hero = 506px */
-    }
-}
-
-/* For other pages like About, use normal spacing */
-.other-pages main {
-    margin-top: 80px !important; /* Normal spacing for About, etc. */
-}
-
-.category-buttons .btn {
-    min-width: 150px;
-}
-
-.category-buttons .btn.active {
-    background-color: #4A4A4F;
-    color: white;
-    border-color: #4A4A4F;
-}
-
-.image-flash .badge {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-}
-
-/* Reduce spacing between category buttons and posts */
-.container.px-4.mb-4 {
-    margin-bottom: 0.5rem !important;  /* Less space below categories */
-}
-
-.col-12.mt-3.left {
-    margin-top: 0.5rem !important;  /* Less space above posts */
-}
-
-/* Authentication forms responsive improvements */
-@media (max-width: 768px) {
-    .other-pages main {
-        margin-top: 45px !important; /* Further reduced from 60px for mobile */
-    }
-    
-    /* Make auth cards much more mobile-friendly */
-    .card {
-        margin-top: 0.5rem !important;  /* Minimal top margin */
-        margin-bottom: 0.5rem !important;
-        box-shadow: none !important; /* Remove shadow to save space */
-    }
-    
-    .card-body {
-        padding: 1rem !important; /* Reduced from 1.5rem */
-    }
-    
-    /* Compact form elements on mobile */
-    .form-control {
-        font-size: 16px; /* Prevents zoom on iOS */
-        padding: 0.4rem 0.6rem; /* Smaller padding */
-        margin-bottom: 0.5rem; /* Tighter spacing */
-    }
-    
-    .form-label {
-        margin-bottom: 0.25rem !important; /* Tighter label spacing */
-        font-size: 0.9rem; /* Smaller labels */
-    }
-    
-    .mb-3 {
-        margin-bottom: 0.75rem !important; /* Reduce all mb-3 spacing */
-    }
-    
-    .btn {
-        padding: 0.4rem 0.8rem; /* Smaller buttons */
-        font-size: 0.9rem;
-    }
-    
-    .post-title {
-        font-size: 1.8rem !important; /* Smaller titles */
-        margin-bottom: 0.5rem !important;
-    }
-    
-    .text-center p {
-        font-size: 0.85rem; /* Smaller text */
-        margin-bottom: 0.5rem !important;
-    }
-}
-
-@media (min-width: 769px) and (max-width: 1024px) {
-    .other-pages main {
-        margin-top: 55px !important; /* Further reduced from 70px for tablet */
-    }
-    
-    .card {
-        margin-top: 0.75rem !important;
-        margin-bottom: 0.75rem !important;
-    }
-    
-    .card-body {
-        padding: 1.25rem !important;
-    }
-    
-    .form-control {
-        padding: 0.5rem 0.75rem;
-    }
-    
-    .post-title {
-        font-size: 2rem !important;
-    }
-}
-
-/* Small laptops/tablets landscape - specific for 1024px */
-@media (min-width: 1025px) and (max-width: 1366px) {
-    .other-pages main {
-        margin-top: 65px !important; /* Slightly reduced for small laptops */
-    }
-}
-
-/* Desktop keeps the original spacing */
-@media (min-width: 1367px) {
-    .other-pages main {
-        margin-top: 80px !important;
-    }
-    
-    /* Larger forms on desktop */
-    .form-control {
-        padding: 0.75rem 1rem;
-    }
-    
-    .form-control-lg {
-        padding: 1rem 1.25rem;
-    }
-}
-
-/* Additional mobile optimizations for auth forms */
-@media (max-width: 576px) {
-    .container {
-        padding-left: 1rem !important;
-        padding-right: 1rem !important;
-    }
-    
-    .other-pages main {
-        margin-top: 40px !important; /* Even less for very small screens */
-    }
-    
-    .card-body {
-        padding: 0.75rem !important; /* Minimal padding for small screens */
-    }
-    
-    .post-title {
-        font-size: 1.5rem !important;
-        line-height: 1.1;
-    }
-}
-
-/* User greeting styling */
-.user-greeting {
-    font-size: 1.1rem !important;
-    font-weight: bold !important;
-    color: #445261 !important;
-    margin-bottom: 0 !important;
-    line-height: 1.5 !important;
-}
-
-/* Responsive user greeting */
-@media (max-width: 768px) {
-    .user-greeting {
-        font-size: 1rem !important;
-        margin-right: 0.5rem !important;
-    }
-    
-    .btn-sm {
-        font-size: 0.8rem !important;
-        padding: 0.25rem 0.5rem !important;
-    }
-}
-
-/* User section on mobile */
-@media (max-width: 576px) {
-    .d-flex.align-items-center {
-        flex-direction: column !important;
-        align-items: flex-end !important;
-    }
-    
-    .user-greeting {
-        margin-bottom: 0.25rem !important;
-        margin-right: 0 !important;
-    }
-}
-
-/* Custom logout page styling */
-.btn-warning {
-    background-color: #E84610 !important;
-    border-color: #E84610 !important;
-    color: white !important;
-}
-
-.btn-warning:hover {
-    background-color: #cc3e0e !important;
-    border-color: #cc3e0e !important;
-    color: white !important;
-}
-
-/* Logout page specific styling */
-.logout-icon {
-    color: #E84610 !important;
-}
-
-/* Center alignment for logout page */
-.logout-card {
-    max-width: 400px;
-    margin: 0 auto;
-}
-
-/* STRONGER hover effect prevention for production */
-.post-link:hover .card-text,
-.post-link:hover .card-text *,
-.post-link:hover .text-muted,
-.post-link:hover .text-muted *,
-.post-link:hover .author,
-.post-link:hover .faded {
-    color: inherit !important;
-    background-color: transparent !important;
-    text-decoration: none !important;
-}
-
-/* Reset ALL elements inside post-link on hover */
-.post-link:hover * {
-    color: inherit !important;
-    background-color: transparent !important;
-    text-decoration: none !important;
-}
-
-/* Then specifically override ONLY the title */
-.post-link:hover .card-title {
-    color: #E84610 !important;
-    text-decoration: underline !important;
-    transition: color 0.3s ease !important;
-}
-
-/* Ensure card lift effect still works */
-.post-link:hover .card {
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12) !important;
-    transform: translateY(-2px) !important;
-    transition: all 0.3s ease !important;
-    background-color: transparent !important;
-}
-
-/* Fixed/Sticky Navbar Styling */
+/* ===========================================
+   NAVIGATION
+   =========================================== */
 .navbar {
     position: sticky !important;
     top: 0 !important;
@@ -583,19 +107,96 @@ main {
     transition: all 0.3s ease !important;
 }
 
-/* Ensure navbar content is properly spaced */
-.navbar-nav {
-    align-items: center;
+.navbar-nav { align-items: center; }
+
+/* ===========================================
+   PAGE SPACING
+   =========================================== */
+main { margin-top: 0 !important; }
+.home-page main { margin-top: 526px !important; }
+.other-pages main { margin-top: 80px !important; }
+
+/* ===========================================
+   AUTHENTICATION & USER
+   =========================================== */
+.user-greeting { 
+    font-size: 1.1rem !important; 
+    font-weight: bold !important; 
+    color: #445261 !important; 
+    margin-bottom: 0 !important; 
+    line-height: 1.5 !important; 
 }
 
-/* Add padding to body to prevent content overlap */
-body {
-    padding-top: 0;
+.btn-warning { 
+    background-color: #E84610 !important; 
+    border-color: #E84610 !important; 
+    color: white !important; 
+}
+.btn-warning:hover { 
+    background-color: #cc3e0e !important; 
+    border-color: #cc3e0e !important; 
+    color: white !important; 
 }
 
-/* Mobile navbar fixes */
+/* ===========================================
+   UTILITIES
+   =========================================== */
+.category-buttons .btn { min-width: 150px; }
+.category-buttons .btn.active { background-color: #4A4A4F; color: white; border-color: #4A4A4F; }
+.btn-like { color: #E84610; border: none; background: transparent; }
+.btn-delete { color: #fff; background: #E84610; }
+.link { color: #23BBBB; text-decoration: none; }
+.link:hover { color: #445261; text-decoration: underline; }
+
+/* ===========================================
+   RESPONSIVE MOBILE (768px and below)
+   =========================================== */
+@media (max-width: 768px) {
+    /* Grid */
+    .col-md-5th { flex: 0 0 100%; max-width: 100%; }
+    
+    /* Hero */
+    .hero-image-container { height: 350px !important; }
+    .home-page main { margin-top: 356px !important; }
+    
+    /* Page spacing */
+    .other-pages main { margin-top: 45px !important; }
+    
+    /* Forms */
+    .card { margin-top: 0.5rem !important; margin-bottom: 0.5rem !important; box-shadow: none !important; }
+    .card-body { padding: 1rem !important; }
+    .form-control { font-size: 16px; padding: 0.4rem 0.6rem; margin-bottom: 0.5rem; }
+    .form-label { margin-bottom: 0.25rem !important; font-size: 0.9rem; }
+    .mb-3 { margin-bottom: 0.75rem !important; }
+    .btn { padding: 0.4rem 0.8rem; font-size: 0.9rem; }
+    .post-title { font-size: 1.8rem !important; margin-bottom: 0.5rem !important; }
+    
+    /* User */
+    .user-greeting { font-size: 1rem !important; margin-right: 0.5rem !important; }
+    .btn-sm { font-size: 0.8rem !important; padding: 0.25rem 0.5rem !important; }
+}
+
+/* ===========================================
+   RESPONSIVE TABLET (769px to 991px)
+   =========================================== */
+@media (min-width: 769px) and (max-width: 991.98px) {
+    .col-md-5th { flex: 0 0 50%; max-width: 50%; }
+    .hero-image-container { height: 500px !important; }
+    .other-pages main { margin-top: 55px !important; }
+    .card { margin-top: 0.75rem !important; margin-bottom: 0.75rem !important; }
+    .card-body { padding: 1.25rem !important; }
+    .post-title { font-size: 2rem !important; }
+    
+    /* Hero positioning for tablet */
+    .home-page .hero-section { position: relative !important; top: auto !important; margin-top: 0 !important; }
+    .home-page main { margin-top: 0 !important; }
+}
+
+/* ===========================================
+   MOBILE NAVIGATION (991px and below)
+   =========================================== */
 @media (max-width: 991.98px) {
-    /* Fix navbar collapse positioning */
+    /* Mobile navbar styling */
     .navbar-collapse {
         background-color: rgba(255, 255, 255, 0.98) !important;
         margin-top: 0.5rem !important;
@@ -605,103 +206,49 @@ body {
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
     }
     
-    /* Left-align menu items instead of center */
-    .navbar-nav {
-        text-align: left !important;
-        align-items: flex-start !important;
-    }
+    /* Menu alignment */
+    .navbar-nav { text-align: left !important; align-items: flex-start !important; }
+    .navbar-nav .nav-link { text-align: left !important; padding: 0.5rem 0 !important; border-bottom: 1px solid rgba(0, 0, 0, 0.1); margin-bottom: 0.25rem !important; }
+    .navbar-nav .nav-link:last-child { border-bottom: none; }
+    .navbar-nav .nav-item { width: 100% !important; }
     
-    .navbar-nav .nav-link {
-        text-align: left !important;
-        padding: 0.5rem 0 !important;
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-        margin-bottom: 0.25rem !important;
-    }
+    /* User controls */
+    .user-greeting { text-align: left !important; padding: 0.5rem 0 !important; }
+    .btn-sm { margin-top: 0.5rem !important; width: auto !important; text-align: center !important; }
     
-    .navbar-nav .nav-link:last-child {
-        border-bottom: none;
-    }
-    
-    /* Fix user greeting alignment in mobile menu */
-    .navbar-nav .nav-item {
-        width: 100% !important;
-    }
-    
-    /* User greeting in mobile menu */
-    .user-greeting {
-        text-align: left !important;
-        padding: 0.5rem 0 !important;
-    }
-    
-    /* Logout button in mobile menu */
-    .btn-sm {
-        margin-top: 0.5rem !important;
-        width: auto !important;
-        text-align: center !important;
-    }
-    
-    /* FIX: Hero image should not be absolute on mobile */
-    .home-page .hero-section {
-        position: relative !important; /* Changed from absolute */
-        top: auto !important; /* Reset top positioning */
-        left: auto !important;
-        right: auto !important;
-        z-index: 1 !important;
-        margin-top: 0 !important; /* Removed the 56px gap */
-    }
-    
-    /* Adjust main content margin for mobile */
-    .home-page main {
-        margin-top: 0 !important; /* Reset since hero is now relative */
-    }
-    
-    .navbar {
-        z-index: 1050 !important; /* Higher than hero */
-    }
-    
-    /* Ensure burger menu content doesn't affect hero */
-    .navbar-collapse.show {
-        position: relative !important;
-        z-index: 1051 !important;
-    }
+    /* Hero positioning for mobile */
+    .home-page .hero-section { position: relative !important; top: auto !important; left: auto !important; right: auto !important; z-index: 1 !important; margin-top: 0 !important; }
+    .home-page main { margin-top: 0 !important; }
+    .navbar { z-index: 1050 !important; }
+    .navbar-collapse.show { position: relative !important; z-index: 1051 !important; }
 }
 
-/* Fix for very small screens */
+/* ===========================================
+   SMALL MOBILE (576px and below)
+   =========================================== */
 @media (max-width: 576px) {
-    .navbar-collapse {
-        margin-left: -1rem !important;
-        margin-right: -1rem !important;
-        padding: 1rem 1.5rem !important;
-    }
+    .container { padding-left: 1rem !important; padding-right: 1rem !important; }
+    .other-pages main { margin-top: 40px !important; }
+    .card-body { padding: 0.75rem !important; }
+    .post-title { font-size: 1.5rem !important; line-height: 1.1; }
     
-    .navbar-nav .nav-link {
-        font-size: 1.1rem !important;
-        padding: 0.75rem 0 !important;
-    }
+    /* Mobile navbar */
+    .navbar-collapse { margin-left: -1rem !important; margin-right: -1rem !important; padding: 1rem 1.5rem !important; }
+    .navbar-nav .nav-link { font-size: 1.1rem !important; padding: 0.75rem 0 !important; }
     
-    /* Remove hero margin on small screens too */
-    .home-page .hero-section {
-        margin-top: 0 !important; /* No gap */
-    }
-    
-    .hero-image-container {
-        height: 350px !important;
-    }
+    /* User section */
+    .d-flex.align-items-center { flex-direction: column !important; align-items: flex-end !important; }
+    .user-greeting { margin-bottom: 0.25rem !important; margin-right: 0 !important; }
 }
 
-/* Tablet specific fixes */
-@media (min-width: 769px) and (max-width: 991.98px) {
-    .home-page .hero-section {
-        position: relative !important; /* Also relative on tablet */
-        top: auto !important;
-        margin-top: 0 !important; /* No gap on tablet either */
-    }
-    
-    .home-page main {
-        margin-top: 0 !important;
-    }
-    
-    .hero-image-container {
-        height: 500px !important;
-    }
+/* ===========================================
+   LARGE SCREENS (1025px and above)
+   =========================================== */
+@media (min-width: 1025px) and (max-width: 1366px) {
+    .other-pages main { margin-top: 65px !important; }
 }
+
+@media (min-width: 1367px) {
+    .other-pages main { margin-top: 80px !important; }
+    .form-control { padding: 0.75rem 1rem; }
+    .form-control-lg { padding: 1rem 1.25rem; }
