@@ -112,37 +112,38 @@ body {
     color: inherit;
 }
 
-/* Hover effect - Target the correct class (.card-title, not .post-title) */
+/* Hover effect - ONLY title should change */
 .post-link:hover .card-title {
     color: #E84610 !important;
     text-decoration: underline;
     transition: all 0.3s ease;
 }
 
-/* Remove any hover effects from excerpt */
+/* PREVENT hover effects on excerpt - IMPORTANT! */
 .post-link:hover .card-text {
-    color: inherit;
+    color: inherit !important;
+    background-color: inherit !important;
+    text-decoration: none !important;
 }
 
-/* Card hover - subtle shadow without background change */
+/* Card hover - subtle shadow only */
 .post-link:hover .card {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.12);
     transform: translateY(-2px);
     transition: all 0.3s ease;
 }
 
-/* Ensure excerpt stays normal on hover */
+/* Ensure excerpt never changes on hover */
 .card-text {
-    transition: none;
+    transition: none !important;
 }
 
-/* Author and date styling - no hover effect */
-.text-muted small {
-    transition: none;
-}
-
-.text-muted small:hover {
+/* Prevent any text highlighting on author/date */
+.post-link:hover .text-muted,
+.post-link:hover .text-muted small {
     color: inherit !important;
+    background-color: inherit !important;
+    text-decoration: none !important;
 }
 
 .post-title {
