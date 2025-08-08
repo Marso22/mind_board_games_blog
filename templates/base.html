@@ -27,10 +27,11 @@
 <body class="d-flex flex-column h-100 main-bg {% block body_class %}{% endblock %}">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
         <div class="container-fluid">
-            <a class="navbar-brand fw-bold" href="{% url 'home' %}">
-                <span class="brand">c<span class="red-o">o</span>de<span class="thin">|star</span></span>
+            <a class="navbar-brand" href="{% url 'home' %}">
+                <img src="{% static 'images/logodeveloper.jpg' %}" alt="LogoDeveloper" height="40"
+                    style="object-fit: contain;">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
                 aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -49,28 +50,28 @@
                         <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}"
                             href="{% url 'about' %}">About</a>
                     </li>
-                    
+
                     <!-- Authentication Links for logged OUT users -->
                     {% if not user.is_authenticated %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'account_login' %}">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
-                        </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_login' %}">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'account_signup' %}">Register</a>
+                    </li>
                     {% endif %}
                 </ul>
-                
+
                 <!-- Right side - User greeting and logout for logged IN users -->
                 {% if user.is_authenticated %}
-                    <div class="d-flex align-items-center">
-                        <span class="navbar-text fw-bold text-primary me-3 user-greeting">
-                            Hello, {{ user.username }}!
-                        </span>
-                        <a class="btn btn-outline-secondary btn-sm" href="{% url 'account_logout' %}">
-                            <i class="fas fa-sign-out-alt me-1"></i>Logout
-                        </a>
-                    </div>
+                <div class="d-flex align-items-center">
+                    <span class="navbar-text fw-bold text-primary me-3 user-greeting">
+                        Hello, {{ user.username }}!
+                    </span>
+                    <a class="btn btn-outline-secondary btn-sm" href="{% url 'account_logout' %}">
+                        <i class="fas fa-sign-out-alt me-1"></i>Logout
+                    </a>
+                </div>
                 {% endif %}
             </div>
         </div>
