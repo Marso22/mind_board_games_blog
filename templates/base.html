@@ -27,7 +27,7 @@
 <body class="d-flex flex-column h-100 main-bg {% block body_class %}{% endblock %}">
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'home' %}">
                 <img src="{% static 'images/logodeveloper.jpg' %}" alt="LogoDeveloper" height="40"
@@ -77,6 +77,17 @@
         </div>
     </nav>
 
+    {% if messages %}
+      <div class="container mt-3">
+        {% for message in messages %}
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+    
     {% block hero %}
     {% endblock hero %}
 

@@ -50,12 +50,13 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    # 'cloudinary_storage',  # ← Comment out temporarily
+    'cloudinary_storage',
     'django.contrib.staticfiles',
-    # 'cloudinary',  # ← Comment out temporarily
+    'cloudinary',  
     'django_summernote',
-    'blog',
+#    'blog',
     'about',
+    'blog.apps.BlogConfig',
 ]
 
 SITE_ID = 1
