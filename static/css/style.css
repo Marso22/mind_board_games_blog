@@ -631,3 +631,9 @@ main {
         margin-top: 4rem !important; /* Larger space for desktop */
     }
 }
+
+@media (min-width: 1024px) {
+    .hero-section {
+        margin-bottom: 3rem !important; /* Adjust value as needed */
+    }
+}
