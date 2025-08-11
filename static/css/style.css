@@ -650,3 +650,16 @@ main {
     text-align: center;
     /* Add more custom styles as needed */
 }
+
+@media (max-width: 765px) {
+    .custom-toast-position {
+        right: 1rem !important; /* Move toast closer to the right edge on mobile */
+        left: 1rem !important;  /* Optionally, add some left margin */
+    }
+    .custom-toast-style {
+        font-size: 1.1rem;
+        box-shadow: 0 2px 6px rgba(216, 38, 7, 0.3);
+        border-radius: 0.5rem;
+        padding: 0.5rem 1rem;
+    }
+}
