@@ -628,7 +628,7 @@ main {
 
 @media (min-width: 1024px) {
     .choose-category-title {
-        margin-top: 4rem !important; /* Larger space for desktop */
+        margin-top: 2rem !important; /* Larger space for desktop */
     }
 }
 
@@ -636,4 +636,17 @@ main {
     .hero-section {
         margin-bottom: 3rem !important; /* Adjust value as needed */
     }
+}
+
+.custom-toast-position {
+    right: 15rem !important; /* Move toast 10rem from the right edge */
+    /* Or use left: auto; right: 10rem; for more control */
+}
+
+.custom-toast-style {
+    box-shadow: 0 4px 40px rgba(216, 38, 7, 0.637);
+    border-radius: 0.75rem;
+    font-size: 1.6rem;
+    text-align: center;
+    /* Add more custom styles as needed */
 }
