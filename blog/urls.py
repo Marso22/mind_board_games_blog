@@ -9,5 +9,6 @@ urlpatterns = [
          views.comment_edit, name='comment_edit'),
     path('posts/<slug:slug>/delete_comment/<int:comment_id>/', 
          views.comment_delete, name='comment_delete'),
+     path('test-message/', views.test_message, name='test_message'),
 #    path('accounts/signup/', CustomSignupView.as_view(), name='account_signup'),
 ]

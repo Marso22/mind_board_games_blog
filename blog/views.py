@@ -121,3 +121,13 @@ class CustomSignupView(SignupView):
         response = super().form_valid(form)
         messages.success(self.request, "Registration successful! Welcome to Mind Board Games Blog.")
         return response
+
+def test_message(request):
+    messages.success(request, "Test message!")
+    return render(request, "blog/post_detail.html", {
+        "post": Post.objects.filter(status=1).first(),  # or a specific post
+        "comments": [],
+        "comment_count": 0,
+        "comment_form": CommentForm(),
+        "comment_pending_approval": False,
+    })
