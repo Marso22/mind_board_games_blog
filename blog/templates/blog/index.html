@@ -7,7 +7,8 @@
 <!-- Hero Section - Full Width -->
 <div class="hero-section">
     <div class="hero-image-container">
-        <img src="{% static 'images/hero-board-games.jpg' %}" alt="Mind Board Games" class="hero-image">
+        <!-- Hero image with overlay text -->
+        <img src="{% static 'images/hero-board-games.jpg' %}" alt="Mind Board Games Hero Image" class="hero-image">
         <div class="hero-overlay position-absolute top-50 start-50 translate-middle text-center text-white">
             <h1 class="display-4 fw-bold">Explore the World of Mind Games</h1>
             <p class="lead">Strategic Fun for Everyone</p>
@@ -17,8 +18,7 @@
 {% endblock hero %}
 
 {% block content %}
-
-<!-- Category Selection -->
+<!-- Category Selection Section -->
 <div class="container px-4 mb-4">
     <div class="row">
         <div class="col-12 text-center">
@@ -76,6 +76,7 @@
         </div>
     </div>
 
+    <!-- Pagination Section -->
     {% if is_paginated %}
     <nav aria-label="Page navigation">
         <ul class="pagination justify-content-center">
@@ -91,9 +92,9 @@
     </nav>
     {% endif %}
 </div>
-
 {% endblock %}
 
 {% block copyright %}
-    Copyright 2025 Marijonas Rocius
+    <!-- Copyright notice -->
+    Copyright 2025 Marijonas Rocius
 {% endblock %}

@@ -10,7 +10,7 @@
             <!-- Logout Confirmation Card -->
             <div class="card mt-3 mb-4 shadow-sm border-0 logout-card">
                 <div class="card-body p-4 text-center">
-                    <!-- Header -->
+                    <!-- Header Section -->
                     <div class="mb-4">
                         <i class="fas fa-sign-out-alt logout-icon mb-3" style="font-size: 3rem;"></i>
                         <h2 class="card-title mb-2">Sign Out</h2>
@@ -20,7 +20,6 @@
                     <!-- Logout Form -->
                     <form method="post" action="{% url 'account_logout' %}">
                         {% csrf_token %}
-                        
                         <div class="d-grid gap-2 mb-3">
                             <button type="submit" class="btn btn-warning">
                                 <i class="fas fa-sign-out-alt me-2"></i>Yes, Sign Me Out
@@ -28,7 +27,7 @@
                         </div>
                     </form>
 
-                    <!-- Cancel/Stay Logged In -->
+                    <!-- Cancel/Stay Logged In Button -->
                     <div class="text-center">
                         <a href="{% url 'home' %}" class="btn btn-outline-secondary">
                             <i class="fas fa-home me-2"></i>Stay Logged In
@@ -37,7 +36,7 @@
                 </div>
             </div>
 
-            <!-- Additional Info -->
+            <!-- Additional Info Section -->
             <div class="text-center mb-4">
                 <small class="text-muted">
                     <i class="fas fa-shield-alt me-1"></i>
