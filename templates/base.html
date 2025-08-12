@@ -1,5 +1,4 @@
 {% load static %}
-
 {% url 'home' as home_url %}
 
 <!DOCTYPE html>
@@ -26,7 +25,7 @@
 
 <body class="d-flex flex-column h-100 main-bg {% block body_class %}{% endblock %}">
 
-    <!-- Navigation -->
+    <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'home' %}">
@@ -50,7 +49,6 @@
                         <a class="nav-link {% if request.resolver_match.url_name == 'about' %}active{% endif %}"
                             href="{% url 'about' %}">About</a>
                     </li>
-
                     <!-- Authentication Links for logged OUT users -->
                     {% if not user.is_authenticated %}
                     <li class="nav-item">
@@ -61,7 +59,6 @@
                     </li>
                     {% endif %}
                 </ul>
-
                 <!-- Right side - User greeting and logout for logged IN users -->
                 {% if user.is_authenticated %}
                 <div class="d-flex align-items-center">
@@ -77,16 +74,7 @@
         </div>
     </nav>
 
-    {% if messages %}
-    <p>Messages found!</p>
-    {% for message in messages %}
-    <div>{{ message }}</div>
-    {% endfor %}
-    {% else %}
-    <p>No messages found.</p>
-    {% endif %}
-
-
+    <!-- Toast Messages for Notifications -->
     {% if messages %}
     <div aria-live="polite" aria-atomic="true"
          class="position-fixed top-0 end-0 p-3 custom-toast-position"
@@ -104,12 +92,13 @@
         </div>
         {% endfor %}
     </div>
-
     {% endif %}
 
+    <!-- Hero Section -->
     {% block hero %}
     {% endblock hero %}
 
+    <!-- Main Content Section -->
     <main class="flex-shrink-0 main-bg">
         {% block content %}
         <!-- Content Goes here -->
@@ -130,10 +119,12 @@
         </p>
     </footer>
 
+    <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous">
-        </script>
+    </script>
 
+    <!-- Toast Initialization Script -->
     <script>
         document.querySelectorAll('.toast').forEach(function (toastNode) {
             var toast = new bootstrap.Toast(toastNode, { delay: 5000 });
