@@ -7,20 +7,20 @@ from .models import Post, Comment
 from .forms import CommentForm
 from allauth.account.views import SignupView
 
-# Create your views here.
-
-
 class PostList(generic.ListView):
+    """
+    Display a paginated list of published posts, optionally filtered by category.
+    """
     model = Post
     template_name = "blog/index.html"
     paginate_by = 5
-    
+
     def get_queryset(self):
         category = self.request.GET.get('category')
         if category:
             return Post.objects.filter(category=category, status=1).order_by('-created_at')
         return Post.objects.filter(status=1).order_by('-created_at')
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['categories'] = Post.CATEGORY_CHOICES
@@ -28,8 +28,10 @@ class PostList(generic.ListView):
         return context
 
 def post_detail(request, slug):
-    print("post_detail view called")  # This prints every time the view is loaded
-
+    """
+    Display a single post and its approved comments.
+    Handle comment submission for authenticated users.
+    """
     queryset = Post.objects.filter(status=1)
     post = get_object_or_404(queryset, slug=slug)
     comments = post.comments.filter(approved=True).order_by("-created_on")
@@ -38,12 +40,9 @@ def post_detail(request, slug):
     comment_pending_approval = False
 
     if request.method == "POST":
-        print("POST request received")  # This prints only for POST requests
         if request.user.is_authenticated:
             comment_form = CommentForm(data=request.POST)
-            print("Form errors:", comment_form.errors)  # Shows form validation errors
             if comment_form.is_valid():
-                print("Comment form valid, setting message")  # Confirms form is valid
                 comment = comment_form.save(commit=False)
                 comment.author = request.user
                 comment.post = post
@@ -53,8 +52,12 @@ def post_detail(request, slug):
                     'Comment submitted and awaiting approval'
                 )
                 return HttpResponseRedirect(request.path_info)
+            else:
+                messages.add_message(
+                    request, messages.ERROR,
+                    'There was an error with your comment submission.'
+                )
         else:
-            print("User not authenticated")  # Prints if user is not logged in
             messages.add_message(
                 request, messages.ERROR,
                 'You must be logged in to comment'
@@ -75,13 +78,13 @@ def post_detail(request, slug):
 @login_required
 def comment_edit(request, slug, comment_id):
     """
-    Edit a comment
+    Edit an existing comment. Only the author can edit their comment.
     """
     if request.method == "POST":
         queryset = Post.objects.filter(status=1)
         post = get_object_or_404(queryset, slug=slug)
         comment = get_object_or_404(Comment, pk=comment_id)
-        
+
         # Check if user is the author
         if comment.author == request.user:
             comment_form = CommentForm(data=request.POST, instance=comment)
@@ -101,7 +104,7 @@ def comment_edit(request, slug, comment_id):
 @login_required
 def comment_delete(request, slug, comment_id):
     """
-    Delete a comment
+    Delete an existing comment. Only the author can delete their comment.
     """
     queryset = Post.objects.filter(status=1)
     post = get_object_or_404(queryset, slug=slug)
@@ -116,16 +119,21 @@ def comment_delete(request, slug, comment_id):
     return HttpResponseRedirect(f'/posts/{slug}/')
 
 class CustomSignupView(SignupView):
+    """
+    Custom signup view to display a success message after registration.
+    """
     def form_valid(self, form):
-        print("CustomSignupView triggered!")  # For debugging
         response = super().form_valid(form)
         messages.success(self.request, "Registration successful! Welcome to Mind Board Games Blog.")
         return response
 
 def test_message(request):
+    """
+    Test view for displaying a success toast message.
+    """
     messages.success(request, "Test message!")
     return render(request, "blog/post_detail.html", {
-        "post": Post.objects.filter(status=1).first(),  # or a specific post
+        "post": Post.objects.filter(status=1).first(),
         "comments": [],
         "comment_count": 0,
         "comment_form": CommentForm(),
